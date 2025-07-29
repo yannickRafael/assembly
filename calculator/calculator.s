@@ -29,5 +29,22 @@ _start:
 	mov eax,3											; selecting sys call number 3: read
 	int 80h												; invoking sys call
 
+	cmp byte [option], '1'
+	je add
+
+	cmp byte [option], '2'
+	je sub
+
 	mov eax,1											; preparing graceful program exit
 	int 80h												; exiting the program gracefully
+
+add:
+	mov ebx,16
+	mov eax,1
+	int 80h
+
+sub:
+	mov ebx,8
+        mov eax,1
+        int 80h
+
