@@ -83,8 +83,16 @@ add:
 	sub ebx, '0'
 
 	add eax,ebx
+
+	add eax, '0'
+	mov [result], al
+
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, result
+	mov edx, 1
+	int 0x80
 	
-	mov ebx,eax
 	mov eax,1
 	int 80h
 
