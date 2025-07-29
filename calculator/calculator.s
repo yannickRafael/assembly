@@ -73,36 +73,64 @@ _start:
 
 	cmp byte [option],5
 	je quit
+
+
 add:
-	add [num1],[num2]
+	movzx eax, byte[num1]
+	sub eax,'0'
+
+	movzx ebx, byte[num2]
+	sub ebx, '0'
+
+	add eax,ebx
+	
 	mov ebx,eax
 	mov eax,1
 	int 80h
 
 
 sub:
-	add [num1],[num2]
+	movzx eax, byte[num1]
+	sub eax,'0'
+
+	movzx ebx, byte[num2]
+	sub ebx, '0'
+
+	add eax,ebx
+	
 	mov ebx,eax
 	mov eax,1
 	int 80h
 
 
 mul:
-	add [num1],[num2]
-	mov ebx,eax
-	mov eax,1
-	int 80h
+	movzx eax, byte[num1]
+        sub eax,'0'
+
+        movzx ebx, byte[num2]
+        sub ebx, '0'
+
+        add eax,ebx
+        
+        mov ebx,eax
+        mov eax,1
+        int 80h
 
 
 div:
-	add [num1],[num2]
-	mov ebx,eax
-	mov eax,1
-	int 80h
+	movzx eax, byte[num1]
+        sub eax,'0'
+
+        movzx ebx, byte[num2]
+        sub ebx, '0'
+
+        add eax,ebx
+        
+        mov ebx,eax
+        mov eax,1
+        int 80h
 
 
 quit:
-	add [num1],[num2]
-	mov ebx,eax
 	mov eax,1
 	int 80h
