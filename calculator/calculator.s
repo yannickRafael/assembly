@@ -14,6 +14,7 @@ section .bss
         option resb 1                                                                                   ; created uninitialized variable to store option                
         num1 resb 1                                                                                     ; variable to store 1st value
         num2 resb 1                                                                                     ; variable to store 1st value
+	result resb 1
  
 
 section .text
@@ -73,12 +74,35 @@ _start:
 	cmp byte [option],5
 	je quit
 add:
-	mov ebx,16
+	add [num1],[num2]
+	mov ebx,eax
 	mov eax,1
 	int 80h
 
-sub:
-	mov ebx,8
-        mov eax,1
-        int 80h
 
+sub:
+	add [num1],[num2]
+	mov ebx,eax
+	mov eax,1
+	int 80h
+
+
+mul:
+	add [num1],[num2]
+	mov ebx,eax
+	mov eax,1
+	int 80h
+
+
+div:
+	add [num1],[num2]
+	mov ebx,eax
+	mov eax,1
+	int 80h
+
+
+quit:
+	add [num1],[num2]
+	mov ebx,eax
+	mov eax,1
+	int 80h
