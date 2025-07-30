@@ -64,6 +64,8 @@ _start:
         mov eax,3                                                                                       ; selecting sys call number 3: read
         int 80h                                                                                         ; invoking sys call
 	
+	
+	movzx eax, byte [option]
 
 	cmp eax, '1'
 	je add
