@@ -173,6 +173,8 @@ div:
 	movzx ebx, byte[num2]
 	sub ebx, '0'
 
+	xor edx, edx
+
 	div ebx
 
 	add eax, '0'
