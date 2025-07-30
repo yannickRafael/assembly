@@ -126,17 +126,24 @@ sub:
 
 mul:
 	movzx eax, byte[num1]
-        sub eax,'0'
+	sub eax,'0'
 
-        movzx ebx, byte[num2]
-        sub ebx, '0'
+	movzx ebx, byte[num2]
+	sub ebx, '0'
 
-        add eax,ebx
-        
-        mov ebx,eax
-        mov eax,1
-        int 80h
+	mul ebx
 
+	add eax, '0'
+	mov [result], al
+
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, result
+	mov edx, 1
+	int 0x80
+	
+	mov eax,1
+	int 80h
 
 div:
 	movzx eax, byte[num1]
