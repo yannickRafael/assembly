@@ -32,6 +32,12 @@ _start:
         mov ebx,0                                                                                       ; selecting file descriptor 0 for stdin
         mov eax,3                                                                                       ; selecting sys call number 3: read
         int 80h                                                                                         ; invoking sys call
+
+	movzx eax, byte [option]
+	
+	cmp eax, '5'
+	je quit
+
 	
         mov ecx,num1msg                                                                                 ; passing the data(to be printer/written)address to ecx register
         mov edx,num1size                                                                                ; passing the data size
@@ -58,8 +64,6 @@ _start:
         mov eax,3                                                                                       ; selecting sys call number 3: read
         int 80h                                                                                         ; invoking sys call
 	
-	
-	movzx eax, byte [option]
 
 	cmp eax, '1'
 	je add
@@ -72,9 +76,6 @@ _start:
 	
 	cmp eax, '4'
 	je div
-
-	cmp eax, '5'
-	je quit
 
 
 add:
