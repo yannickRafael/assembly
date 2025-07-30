@@ -57,21 +57,23 @@ _start:
         mov ebx,0                                                                                       ; selecting file descriptor 0 for stdin
         mov eax,3                                                                                       ; selecting sys call number 3: read
         int 80h                                                                                         ; invoking sys call
+	
+	
+	movzx eax, byte [option]
 
-
-	cmp byte [option],1
+	cmp eax, '1'
 	je add
 	
-	cmp byte [option],2
+	cmp eax, '2'
 	je sub
 
-	cmp byte [option],3
+	cmp eax, '3'
 	je mul
 	
-	cmp byte [option],4
+	cmp eax, '4'
 	je div
 
-	cmp byte [option],5
+	cmp eax, '5'
 	je quit
 
 
@@ -104,12 +106,20 @@ sub:
 	movzx ebx, byte[num2]
 	sub ebx, '0'
 
-	add eax,ebx
+	sub eax,ebx
+
+	add eax, '0'
+	mov [result], al
+
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, result
+	mov edx, 1
+	int 0x80
 	
-	mov ebx,eax
 	mov eax,1
 	int 80h
-
+	
 
 mul:
 	movzx eax, byte[num1]
