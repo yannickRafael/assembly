@@ -9,6 +9,7 @@ section .data
         num1size equ $-num1msg 
         num2msg db 'Insert the 2nd value: ',0xa
         num2size equ $-num2msg
+	nl db 0xa
 
 section .bss
         option resb 1                                                                                   ; created uninitialized variable to store option                
@@ -98,6 +99,12 @@ add:
 	mov edx, 1
 	int 0x80
 	
+	mov eax, 4
+	mov ebx, 1
+	mov ecx,nl
+	mov edx, 1
+	int 0x80
+	
 	mov eax,1
 	int 80h
 
@@ -117,6 +124,13 @@ sub:
 	mov eax, 4
 	mov ebx, 1
 	mov ecx, result
+	mov edx, 1
+	int 0x80
+
+	
+	mov eax, 4
+	mov ebx, 1
+	mov ecx,nl
 	mov edx, 1
 	int 0x80
 	
@@ -139,6 +153,12 @@ mul:
 	mov eax, 4
 	mov ebx, 1
 	mov ecx, result
+	mov edx, 1
+	int 0x80
+	
+	mov eax, 4
+	mov ebx, 1
+	mov ecx,nl
 	mov edx, 1
 	int 0x80
 	
